@@ -626,7 +626,7 @@ public class ScrollableSegmentedControl: UIControl {
                 } else {
                     wrapperView.backgroundColor = UIColor.white
                     wrapperView.layer.borderColor = UIColor.init(red: 79/255.0, green: 79/255.0, blue: 79/255.0, alpha: 1.0).cgColor
-                    wrapperView.layer.borderWidth = 2.0
+                    wrapperView.layer.borderWidth = 1.0
                     if let title = super.normalAttributedTitle {
                         titleLabel.attributedText = title
                     } else {
@@ -665,7 +665,7 @@ public class ScrollableSegmentedControl: UIControl {
                 )
             ])
             wrapperView.layer.borderColor = UIColor.init(red: 79/255.0, green: 79/255.0, blue: 79/255.0, alpha: 1.0).cgColor
-            wrapperView.layer.borderWidth = 2.0
+            wrapperView.layer.borderWidth = 1.0
             titleLabel.translatesAutoresizingMaskIntoConstraints = false
             titleLabel.clipsToBounds = true
             titleLabel.layer.cornerRadius = 4.0
