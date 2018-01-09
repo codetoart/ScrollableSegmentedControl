@@ -778,6 +778,9 @@ public class ScrollableSegmentedControl: UIControl {
         override func configure(){
             super.configure()
             titleLabel.font = BaseSegmentCollectionViewCell.defaultFont
+            titleLabel.backgroundColor = UIColor.red
+            titleLabel.clipsToBounds = true
+            titleLabel.layer.cornerRadius = 4.0
             imageView.contentMode = .scaleAspectFit
             imageView.clipsToBounds = true
             
