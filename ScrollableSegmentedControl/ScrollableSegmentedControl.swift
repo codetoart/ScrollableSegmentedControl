@@ -366,7 +366,45 @@ public class ScrollableSegmentedControl: UIControl {
     }
     
     // MARK : - CollectionViewController
-    
+    /* override var contentColor:UIColor? {
+     didSet {
+     titleLabel.textColor = (contentColor == nil) ? BaseSegmentCollectionViewCell.defaultTextColor : contentColor!
+     }
+     }
+     
+     override var selectedContentColor:UIColor? {
+     didSet {
+     titleLabel.highlightedTextColor = (selectedContentColor == nil) ? UIColor.black : selectedContentColor!
+     }
+     }
+     
+     override var isHighlighted: Bool {
+     didSet {
+     if let title = (isHighlighted) ? super.highlightedAttributedTitle : super.normalAttributedTitle {
+     titleLabel.attributedText = title
+     } else {
+     titleLabel.isHighlighted = isHighlighted
+     }
+     }
+     }
+     
+     override var isSelected: Bool {
+     didSet {
+     if isSelected {
+     if let title = super.selectedAttributedTitle {
+     titleLabel.attributedText = title
+     } else {
+     titleLabel.textColor = (selectedContentColor == nil) ? UIColor.black : selectedContentColor!
+     }
+     } else {
+     if let title = super.normalAttributedTitle {
+     titleLabel.attributedText = title
+     } else {
+     titleLabel.textColor = (contentColor == nil) ? BaseSegmentCollectionViewCell.defaultTextColor : contentColor!
+     }
+     }
+     }
+     }*/
     /**
      A CollectionViewController is private inner class with main purpose to hide UICollectionView protocol conformances.
      */
@@ -577,22 +615,28 @@ public class ScrollableSegmentedControl: UIControl {
         
         override var isSelected: Bool {
             didSet {
-                if let title = (isHighlighted) ? super.highlightedAttributedTitle : super.normalAttributedTitle {
-                    titleLabel.attributedText = title
-                } else {
-                    titleLabel.isHighlighted = isHighlighted
-                }
                 if isSelected {
                     wrapperView.backgroundColor =  UIColor.init(red: 180/255.0, green: 32/255.0, blue: 28/255.0, alpha: 1.0)
                     wrapperView.layer.borderWidth = 0.0
+                    if let title = super.selectedAttributedTitle {
+                        titleLabel.attributedText = title
+                    } else {
+                        titleLabel.textColor = (selectedContentColor == nil) ? UIColor.black : selectedContentColor!
                     }
-                else {
+                } else {
                     wrapperView.backgroundColor = UIColor.white
                     wrapperView.layer.borderColor = UIColor.init(red: 79/255.0, green: 79/255.0, blue: 79/255.0, alpha: 1.0).cgColor
                     wrapperView.layer.borderWidth = 2.0
+                    if let title = super.normalAttributedTitle {
+                        titleLabel.attributedText = title
+                    } else {
+                        titleLabel.textColor = (contentColor == nil) ? BaseSegmentCollectionViewCell.defaultTextColor : contentColor!
+                    }
                 }
             }
         }
+        
+
         
         override func configure(){
             super.configure()
