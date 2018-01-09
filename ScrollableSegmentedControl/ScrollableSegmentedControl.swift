@@ -551,6 +551,7 @@ public class ScrollableSegmentedControl: UIControl {
     
     private class TextOnlySegmentCollectionViewCell: BaseSegmentCollectionViewCell {
         let titleLabel = UILabel()
+        let wrapperView = UIView()
 
         override var contentColor:UIColor? {
             didSet {
@@ -577,26 +578,46 @@ public class ScrollableSegmentedControl: UIControl {
         override var isSelected: Bool {
             didSet {
                 if isSelected {
-                    if let title = super.selectedAttributedTitle {
-                        titleLabel.attributedText = title
-                    } else {
-                        titleLabel.textColor = (selectedContentColor == nil) ? UIColor.black : selectedContentColor!
+                    wrapperView.backgroundColor =  UIColor.init(red: 180/255.0, green: 32/255.0, blue: 28/255.0, alpha: 1.0)
+                    titleLabel.textColor = UIColor.white
+                    wrapperView.layer.borderWidth = 0.0
                     }
-                } else {
-                    if let title = super.normalAttributedTitle {
-                        titleLabel.attributedText = title
-                    } else {
-                        titleLabel.textColor = (contentColor == nil) ? BaseSegmentCollectionViewCell.defaultTextColor : contentColor!
-                    }
+                else {
+                    wrapperView.backgroundColor = contentColor
+                    titleLabel.textColor = UIColor.init(red: 79/255.0, green: 79/255.0, blue: 79/255.0, alpha: 1.0)
+                    wrapperView.layer.borderWidth = 2.0
                 }
             }
         }
         
         override func configure(){
             super.configure()
+            contentView.addSubview(wrapperView)
             contentView.addSubview(titleLabel)
+            wrapperView.translatesAutoresizingMaskIntoConstraints = false
+            wrapperView.clipsToBounds = true
+            wrapperView.layer.cornerRadius = 4
+            NSLayoutConstraint.activate([
+                wrapperView.leadingAnchor.constraint(
+                    equalTo: contentView.leadingAnchor,
+                    constant: 8
+                ),
+                wrapperView.trailingAnchor.constraint(
+                    equalTo: contentView.trailingAnchor,
+                    constant: -8
+                ),
+                wrapperView.topAnchor.constraint(
+                    equalTo: contentView.topAnchor,
+                    constant: 8
+                ),
+                wrapperView.bottomAnchor.constraint(
+                    equalTo: contentView.bottomAnchor,
+                    constant: -8
+                )
+            ])
+            wrapperView.layer.borderColor = UIColor.init(red: 79/255.0, green: 79/255.0, blue: 79/255.0, alpha: 1.0).cgColor
+            wrapperView.layer.borderWidth = 2.0
             titleLabel.translatesAutoresizingMaskIntoConstraints = false
-            titleLabel.backgroundColor = UIColor.init(red: 180/255.0, green: 32/255.0, blue: 38/255.0, alpha: 1.0)
             titleLabel.clipsToBounds = true
             titleLabel.layer.cornerRadius = 4.0
             titleLabel.textColor = BaseSegmentCollectionViewCell.defaultTextColor
