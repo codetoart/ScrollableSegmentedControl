@@ -583,8 +583,9 @@ public class ScrollableSegmentedControl: UIControl {
                     wrapperView.layer.borderWidth = 0.0
                     }
                 else {
-                    wrapperView.backgroundColor = contentColor
+                    wrapperView.backgroundColor = UIColor.white
                     titleLabel.textColor = UIColor.init(red: 79/255.0, green: 79/255.0, blue: 79/255.0, alpha: 1.0)
+                    wrapperView.layer.borderColor = UIColor.init(red: 79/255.0, green: 79/255.0, blue: 79/255.0, alpha: 1.0).cgColor
                     wrapperView.layer.borderWidth = 2.0
                 }
             }
@@ -592,6 +593,7 @@ public class ScrollableSegmentedControl: UIControl {
         
         override func configure(){
             super.configure()
+            contentView.backgroundColor = .white
             contentView.addSubview(wrapperView)
             contentView.addSubview(titleLabel)
             wrapperView.translatesAutoresizingMaskIntoConstraints = false
@@ -600,11 +602,11 @@ public class ScrollableSegmentedControl: UIControl {
             NSLayoutConstraint.activate([
                 wrapperView.leadingAnchor.constraint(
                     equalTo: contentView.leadingAnchor,
-                    constant: 8
+                    constant: 4
                 ),
                 wrapperView.trailingAnchor.constraint(
                     equalTo: contentView.trailingAnchor,
-                    constant: -8
+                    constant: -4
                 ),
                 wrapperView.topAnchor.constraint(
                     equalTo: contentView.topAnchor,
