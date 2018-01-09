@@ -596,6 +596,9 @@ public class ScrollableSegmentedControl: UIControl {
             super.configure()
             contentView.addSubview(titleLabel)
             titleLabel.translatesAutoresizingMaskIntoConstraints = false
+            titleLabel.backgroundColor = UIColor.init(red: 180/255.0, green: 32/255.0, blue: 38/255.0, alpha: 1.0)
+            titleLabel.clipsToBounds = true
+            titleLabel.layer.cornerRadius = 4.0
             titleLabel.textColor = BaseSegmentCollectionViewCell.defaultTextColor
             titleLabel.font = BaseSegmentCollectionViewCell.defaultFont
             
@@ -778,9 +781,6 @@ public class ScrollableSegmentedControl: UIControl {
         override func configure(){
             super.configure()
             titleLabel.font = BaseSegmentCollectionViewCell.defaultFont
-            titleLabel.backgroundColor = UIColor.red
-            titleLabel.clipsToBounds = true
-            titleLabel.layer.cornerRadius = 4.0
             imageView.contentMode = .scaleAspectFit
             imageView.clipsToBounds = true
             
