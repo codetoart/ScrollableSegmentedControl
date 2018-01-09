@@ -577,14 +577,17 @@ public class ScrollableSegmentedControl: UIControl {
         
         override var isSelected: Bool {
             didSet {
+                if let title = (isHighlighted) ? super.highlightedAttributedTitle : super.normalAttributedTitle {
+                    titleLabel.attributedText = title
+                } else {
+                    titleLabel.isHighlighted = isHighlighted
+                }
                 if isSelected {
                     wrapperView.backgroundColor =  UIColor.init(red: 180/255.0, green: 32/255.0, blue: 28/255.0, alpha: 1.0)
-                    titleLabel.textColor = UIColor.white
                     wrapperView.layer.borderWidth = 0.0
                     }
                 else {
                     wrapperView.backgroundColor = UIColor.white
-                    titleLabel.textColor = UIColor.init(red: 79/255.0, green: 79/255.0, blue: 79/255.0, alpha: 1.0)
                     wrapperView.layer.borderColor = UIColor.init(red: 79/255.0, green: 79/255.0, blue: 79/255.0, alpha: 1.0).cgColor
                     wrapperView.layer.borderWidth = 2.0
                 }
